@@ -1,0 +1,16 @@
+<!-- <div [hidden]="flag"> -->
+    <div>
+<h1>Hello Angular</h1>
+<input type="text" (input)="takeAmount($event)" placeholder="Type Amount">
+<h3>Amount is {{amount|currency:'INR':true:'5.2-4'}}</h3>
+<input type="text" (input)="takeInput($event)" placeholder="Type Name Here">
+<button (click)="update()">Flag</button>
+<h2 [class]="myclass">{{title|titlecase}}</h2>
+<p [ngStyle]="{'color':flag?'red':'green'}">Ng Style Demo</p>
+<h3 [ngClass]="{'red':counter<10,'green':counter>=10}">COUNT {{title}}</h3>
+<p [innerText]="title"></p>
+<p>Count is {{counter}}</p>
+<button (click)="count()" [disabled]="flag">Ok</button>
+</div>
+<button (click)="update()">Click</button>
+
