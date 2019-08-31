@@ -1,4 +1,42 @@
 <!-- <div [hidden]="flag"> -->
+    Rec From Child1 {{recFromChild}}
+    <br>
+
+    Parent <input (input)="fillData($event)" type="text" placeholder="Type Data to Send ">
+    <app-child1 (callbychild)="callParentByChild($event)" [sendbyparent]="data"></app-child1>
+    <br>
+    <app-child2></app-child2>
+        <button (click)="count()" [disabled]="flag">Ok</button>
+        <p>Counter is {{counter}}</p>
+    <label for="" [innerText]="finalnum">0</label>
+    <br>
+    <p *ngIf="buttons.length<5 then t2 else t1">
+        
+    </p>
+    <ul [ngSwitch]="counter">
+        <li *ngSwitchCase="1">One</li>
+        <li *ngSwitchCase="2">Two</li>
+        <li *ngSwitchCase="3">Three</li>
+        <li *ngSwitchCase="4">Four</li>
+        <li *ngSwitchDefault>Five</li>
+    </ul>
+    <ng-template #t2>
+           <h2> I will show</h2>
+        </ng-template>
+    <ng-template #t1>
+       <h1> this will hide </h1>
+    </ng-template>
+    <ul >
+        <li *ngFor="let bt of buttons"> <button (click)="takeNumber(bt)">{{bt}}</button> </li>
+    </ul>
+    <!-- <button (click)="takeNumber('1')">1</button>
+    <button (click)="takeNumber('2')">2</button>
+    <button (click)="takeNumber('3')">3</button> -->
+<br>
+<br>
+<br>
+<br>
+    
     <div>
 <h1>Hello Angular</h1>
 <input type="text" (input)="takeAmount($event)" placeholder="Type Amount">
@@ -10,7 +48,7 @@
 <h3 [ngClass]="{'red':counter<10,'green':counter>=10}">COUNT {{title}}</h3>
 <p [innerText]="title"></p>
 <p>Count is {{counter}}</p>
-<button (click)="count()" [disabled]="flag">Ok</button>
+
 </div>
 <button (click)="update()">Click</button>
 
