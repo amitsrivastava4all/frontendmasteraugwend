@@ -1,1 +1,13 @@
-<app-shop></app-shop>
+<h1>Spa App</h1>
+  <input type="text" [(ngModel)]="name">
+  <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Home</a>
+  &nbsp;
+  <a routerLink="/contact/{{name}}/Developer">Contact</a>
+  &nbsp;
+  <a routerLink="/news">News</a>
+  &nbsp;
+  <a routerLink="/sports">Sports</a>
+
+<br>
+<hr>
+<router-outlet></router-outlet>
