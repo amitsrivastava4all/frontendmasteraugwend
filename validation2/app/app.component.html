@@ -1,0 +1,18 @@
+<form  #form="ngForm" (ngSubmit)="doSubmit(form)">
+<p>{{title}}</p>
+  <input #uname="ngModel" name="uname" ngModel type="text" placeholder="Type Name Here" required pattern="[a-z]{3,10}">
+<br>
+Invalid {{uname.invalid}} <br>
+Valid {{uname.valid}} <br>
+Pristine {{uname.pristine}} <br>
+Touched {{uname.touched}} <br>
+UnTouched {{uname.untouched}} <br>
+Dirty {{uname.dirty}} <br>
+Errors {{uname.errors|json}}
+<br>
+<span class='error' *ngIf="uname.touched && uname.invalid && uname.errors['required']">User Name can't be Empty</span>
+<span class='error' *ngIf="uname.touched && uname.invalid && uname.errors['pattern']">User Name can't be less than 3 or greater than 10</span>
+<p>Form is {{form.invalid}}</p>
+<!-- <button [disabled]="form.invalid">Submit</button> -->
+<button>Submit</button>
+</form>
