@@ -1,0 +1,52 @@
+const url = "https://raw.githubusercontent.com/brainmentorspvtltd/myserverdata/master/mobiles.json";
+
+function doAjax(url){
+    var http = new XMLHttpRequest();
+    http.open("GET",url);
+    console.log("Before Send ");
+    http.send(); // Async
+    console.log("After Send ",http.readyState);
+    http.onreadystatechange=function(){
+    console.log('States is ',http.readyState);
+    if(http.readyState==4 && http.status==200){
+        console.log("Result is ",http.responseText);
+        //console.log(http.responseXML);
+}
+}
+console.log("Ajax Function Ends ");
+}
+doAjax(url);
+
+console.log("Before Start ");
+var promise = fetch(url); // Async 
+console.log("After End ",promise);
+promise.then(response=>{
+console.log("Response is ",response);
+}).catch(err=>{
+console.log("Error in Response ",err);
+});
+
+
+console.log("Before Start ");
+var promise = fetch(url); // Async 
+console.log("After End ",promise);
+promise.then(response=>{
+console.log("Response is ",response);
+response.json().then(data=>console.log("Data is ",data)).catch(e=>console.log("JSON Parse Error ",e));
+}).catch(err=>{
+console.log("Error in Response ",err);
+});
+
+
+console.log("Start ");
+setTimeout(()=>{
+console.log("Time Out call");
+},5000);
+console.log("End ");
+var w = 100;
+var t = setInterval(()=>{
+console.log("Interval call ",w);
+w++;
+},3000);
+clearInterval(t)
+
