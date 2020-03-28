@@ -1,0 +1,220 @@
+var pr = new Promise((resolve, reject)=>{
+setTimeout(()=>{
+console.log("Timeout called ");
+resolve(1000);
+},3000);
+});
+
+undefined
+pr;
+Promise {<pending>}
+VM276:3 Timeout called 
+pr;
+Promise {<resolved>: 1000}
+pr.then(data=>console.log("Data is ",data));
+VM432:1 Data is  1000
+Promise {<resolved>: undefined}
+var pr = new Promise((resolve, reject)=>{
+console.log("Before Timeout call");
+setTimeout(()=>{
+console.log("Timeout called ");
+resolve(1000);
+},3000);
+console.log("After Timeout call ");
+});
+
+VM628:2 Before Timeout call
+VM628:7 After Timeout call 
+undefined
+VM628:4 Timeout called 
+pr;
+Promise {<resolved>: 1000}
+window.fetch
+ƒ fetch() { [native code] }
+if(window.fetch){
+console.log("This feature is support by Ur Browser ");
+}
+else{
+console.log("Outdated Browser ");
+}
+VM821:2 This feature is support by Ur Browser 
+undefined
+if(window.fetch){
+var pr = fetch('');
+console.log("This feature is support by Ur Browser ");
+}
+else{
+var x = new XMLHttpRequest();
+console.log("Outdated Browser ");
+}
+VM897:3 This feature is support by Ur Browser 
+undefined
+VM897:2 Uncaught (in promise) TypeError: Failed to execute 'fetch' on 'Window': Failed to parse URL from 
+    at <anonymous>:2:10
+(anonymous) @ VM897:2
+var pr = new Promise((resolve, reject)=>{
+setTimeout(()=>{
+console.log("Timeout called ");
+resolve(1000);
+},3000);
+});
+undefined
+VM903:3 Timeout called 
+pr.then(data=>console.log("Data is ",data)).catch(err=>{
+console.log('error is ',err);
+
+}).finally(()=>console.log('Finally Called '));
+VM1060:1 Data is  1000
+VM1060:4 Finally Called 
+Promise {<resolved>: undefined}
+function cube(num){
+console.log('Num Call Start ',num);
+    var pr = new Promise((resolve, reject)=>{
+        if(num==5){
+            reject('Rejected Due to 5 ');
+}
+        setTimeout(()=>{
+        resolve(num**3);
+},3000);
+});
+return pr;
+}
+undefined
+var pr1 = cube(3);
+var pr2 =cube(4);
+var pr3 = cube(2);
+Promise.all([pr1, pr2, pr3]).then(res=>{
+console.log("Result is ",res);
+}).catch(err=>console.log('Error is ',err));
+
+VM1367:2 Num Call Start  3
+VM1367:2 Num Call Start  4
+VM1367:2 Num Call Start  2
+Promise {<pending>}
+VM1661:5 Result is  (3) [27, 64, 8]
+var pr1 = cube(3);
+var pr2 =cube(5);
+var pr3 = cube(2);
+Promise.all([pr1, pr2, pr3]).then(res=>{
+console.log("Result is ",res);
+}).catch(err=>console.log('Error is ',err));
+
+VM1367:2 Num Call Start  3
+VM1367:2 Num Call Start  5
+VM1367:2 Num Call Start  2
+VM1669:6 Error is  Rejected Due to 5 
+Promise {<resolved>: undefined}__proto__: Promise[[PromiseStatus]]: "resolved"[[PromiseValue]]: undefined
+var pr1 = cube(3);
+var pr2 =cube(5);
+var pr3 = cube(2);
+Promise.allSettled([pr1, pr2, pr3]).then(res=>{
+console.log("Result is ",res);
+}).catch(err=>console.log('Error is ',err));
+
+VM1367:2 Num Call Start  3
+VM1367:2 Num Call Start  5
+VM1367:2 Num Call Start  2
+Promise {<pending>}
+VM1688:5 Result is  (3) [{…}, {…}, {…}]0: {status: "fulfilled", value: 27}1: {status: "rejected", reason: "Rejected Due to 5 "}2: {status: "fulfilled", value: 8}length: 3__proto__: Array(0)
+var pr1 = cube(3);
+var pr2 =cube(5);
+var pr3 = cube(2);
+Promise.race([pr1, pr2, pr3]).then(res=>{
+console.log("Result is ",res);
+}).catch(err=>console.log('Error is ',err));
+
+VM1367:2 Num Call Start  3
+VM1367:2 Num Call Start  5
+VM1367:2 Num Call Start  2
+VM1699:6 Error is  Rejected Due to 5 
+Promise {<resolved>: undefined}
+var pr1 = cube(3);
+var pr2 =cube(6);
+var pr3 = cube(2);
+Promise.race([pr1, pr2, pr3]).then(res=>{
+console.log("Result is ",res);
+}).catch(err=>console.log('Error is ',err));
+
+VM1367:2 Num Call Start  3
+VM1367:2 Num Call Start  6
+VM1367:2 Num Call Start  2
+Promise {<pending>}
+VM1711:5 Result is  27
+function cube(num){
+console.log('Num Call Start ',num);
+    var pr = new Promise((resolve, reject)=>{
+        if(num==5){
+            reject('Rejected Due to 5 ');
+}
+        setTimeout(()=>{
+        resolve(num**3);
+},3000);
+});
+return pr;
+}
+undefined
+async function total(){
+var result= await cube(3) + await cube(2) +await cube(6);
+console.log("Result is ",result);
+return result; 
+}
+undefined
+var p = total();
+console.log("P is ",p);
+VM1728:2 Num Call Start  3
+VM2054:2 P is  Promise {<pending>}
+undefined
+VM1728:2 Num Call Start  2
+VM1728:2 Num Call Start  6
+VM1954:3 Result is  251
+var p = total();
+console.log("P is ",p);
+VM1728:2 Num Call Start  3
+VM2057:2 P is  Promise {<pending>}
+undefined
+VM1728:2 Num Call Start  2
+VM1728:2 Num Call Start  6
+VM1954:3 Result is  251
+async function total(){
+try{
+var result= await cube(3) + await cube(5) +await cube(6);
+
+console.log("Result is ",result);
+}catch(e){
+console.log("Error is ::: ",e);
+}
+return result; 
+}
+undefined
+var p = total();
+console.log("P is ",p);
+VM1728:2 Num Call Start  3
+VM2130:2 P is  Promise {<pending>}
+undefined
+VM1728:2 Num Call Start  5
+VM2127:7 Error is :::  Rejected Due to 5 
+async function total(){
+try{
+var result= await cube(3) ;
+console.log("Result of 3 is ",result);
+var result2 = await cube(result);
+console.log("Result of "+result+" is ",result2); 
+//console.log("Result is ",result);
+}catch(e){
+console.log("Error is ::: ",e);
+}
+return result; 
+}
+undefined
+var p = total();
+console.log("P is ",p);
+VM1728:2 Num Call Start  3
+VM2405:2 P is  Promise {<pending>}
+undefined
+VM2402:4 Result of 3 is  27
+VM1728:2 Num Call Start  27
+VM2402:6 Result of 27 is  19683
+var w = new Worker('a.js');
+VM2489:1 Uncaught DOMException: Failed to construct 'Worker': 'a.js' is not a valid URL.
+    at <anonymous>:1:9
+(anonymous) @ VM2489:1
